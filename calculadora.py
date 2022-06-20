@@ -1,4 +1,6 @@
 import math
+# import matplotlib.pyplot as plt
+# import numpy as np
 global a
 global b
 global c
@@ -38,16 +40,17 @@ def calcular_vertice(a, b, delta):
         print("O 'a' não pode ser zero.")
     return f"O vértice é ({xv},{yv})"
 
-def funcao_exponencial(a, b):
+def funcao_exponencial():
     n = 0
     a = int(input('\nInforme o valor de a: '))
     while n < 1:
-        b = input('\nInforme o valor de b: ')
+        b = int(input('\nInforme o valor de b: '))
         if(b < 0):
             print('\nO Valor de b tem que ser positivo.')
             break
         else:
             calculos_exponencial(a, b)
+            n =+ 1
 
 
 
@@ -56,15 +59,18 @@ def funcao_exponencial(a, b):
 def calculos_exponencial(a, b):
     n = 0
     while n < 1:
-        escolha_usuario = int(input('\n Digite de acordo com a ação que deseja: 1 - Verificar se a funcão é crescente ou decrescente',
-                                    '\n2 - Calcular função de x informado',
-                                    '\n 3 - Gerar gráfico',
-                                    '\n 4- Sair' ))
-        if(escolha_usuario < 0 or escolha_usuario > 3):
+        escolha_usuario = int(input('\n Digite de acordo com a ação que deseja:' 
+                                    '\n 1 - Verificar se a funcão é crescente ou decrescente' +
+                                    '\n 2 - Calcular função de x informado' +
+                                    '\n 3 - Gerar gráfico' +
+                                    '\n 4 - Sair '
+                                    '\n' ))
+        if(escolha_usuario == 4):
+            n =+ 1
+            break
+        elif(escolha_usuario < 0 or escolha_usuario > 3):
             print('\nValor inválido')
             break
-        elif escolha_usuario == 4:
-            n =+ 1
         else:
             n += 1
             if(escolha_usuario == 1):
@@ -73,7 +79,7 @@ def calculos_exponencial(a, b):
                 else:
                     print('\nA função é descrescente!')
             elif(escolha_usuario == 2):
-                x = int(input('\nInforme um valor de x para calcular a função dele.'))
+                x = int(input('\nInforme um valor de x para calcular a função dele: '))
                 funcao = a * (b ** x)
                 print('f(', x, ') = ', funcao)
             elif(escolha_usuario == 3):
@@ -112,54 +118,89 @@ def grafico(a, b):
     # destaca o eixo y em preto ('k*)
     plt. show()
   
+def gerar_matriz (linhas, colunas):
+    matriz = []
 
+    for i in range(linhas):
+        matriz.append( [" "] * colunas )
+
+    for linha in range(linhas):
+        for coluna in range(colunas):
+            print('Informe um elemento para:', linha, ';', coluna)
+            matriz[linha][coluna] = int(input( ))
+
+    return matriz
+
+def multiplicar_matrizes(matriz, colunas_1, linhas_1):
+    linhas_2 = int(input('Digite o numero de linhas da segunda matriz: '))
+    colunas_2 = int(input('Digite o numero de colunas da segunda matriz: '))
+
+    if(linhas_2 == colunas_1):
+        matriz_2 = gerar_matriz(linhas_2, colunas_2)
+        multiplicar(matriz, matriz_2, colunas_1, linhas_1, colunas_2)
+    else:
+        print('\nA operação não é possível pois o número de colunas da matriz 1 tem que ser igual ao número de linhas da matriz 2')
+
+def multiplicar(matriz, matriz_2, colunas, linhas, colunas_2):
+    matriz_multiplicada = []
+
+    for linha in range(linhas):
+        matriz_multiplicada.append([])
+        for coluna in range(colunas_2):
+            matriz_multiplicada[linha].append(0)
+            for c in range(colunas):
+                matriz_multiplicada[linha][coluna] += matriz[linha][c] * matriz_2[c][coluna]
+    
+    print('\nMatriz A:', matriz, 'x', matriz_2, 'resultou em\n', matriz_multiplicada)
+
+def transpor_matriz(matriz, linhas, colunas):
+    matriz_transposta = []
+    for i in range(colunas):
+        matriz_transposta.append( [" "] * linhas )
+
+    for i in range (linhas): 
+        for j in range (colunas): 
+            matriz_transposta[j][i] = matriz[i][j] 
+    print("Matriz Transposta") 
+    for i in range (colunas): 
+        print (matriz_transposta[i])    
 
 def matriz():
     n = 0
     while n < 1:
-        linhas = int(input('Digite o numero delinhas'))
-        colunas = int(input('Digite o numero de colunas'))
+        linhas = int(input('Digite o numero de linhas: '))
+        colunas = int(input('Digite o numero de colunas: '))
 
-        matriz = [0] * linhas
-        for coluna in range(colunas):
-            matriz[coluna] = [0] * colunas
-
-        for linha in range(linhas):
-            for coluna in range(colunas):
-                matriz[linha][coluna] = float(input('Digite um valor: '))
-
-        for linha in linhas:
-            for coluna in colunas:
-                if(linhas == 2):
-                    break
-
-        escolha_usuario = int(input('\n Digite de acordo com a ação que deseja: 1 - Verificar se a funcão é crescente ou decrescente',
-                                    '\n2 - Calcular função de x informado',
-                                    '\n 3 - Gerar gráfico',
-                                    '\n 4- Sair' ))
-        if(escolha_usuario < 0 or escolha_usuario > 3):
+        matriz = gerar_matriz(linhas, colunas)
+        for i in range (linhas): 
+            print (matriz[i]) 
+        escolha_usuario = int(input('\n Digite de acordo com a ação que deseja:'
+                                    '\n 1 - Verificar a matriz é quadrada'
+                                    '\n 2 - Multiplicar com outra matriz'
+                                    '\n 3 - Transpor matriz'
+                                    '\n 4 - Sair' 
+                                    '\n'))
+        if escolha_usuario == 4:
+            n =+ 1
+        elif(escolha_usuario < 0 or escolha_usuario > 3):
             print('\nValor inválido')
             break
-        elif escolha_usuario == 4:
-            n =+ 1
         else:
             n += 1
             if(escolha_usuario == 1):
-                if(b > 1):
-                    print('\nA função é crescente!')
+                if(linhas == colunas):
+                    print('\nA matriz é quadrada!')
                 else:
-                    print('\nA função é descrescente!')
+                    print('\nA matriz não é quadrada!')
             elif(escolha_usuario == 2):
-                x = int(input('\nInforme um valor de x para calcular a função dele.'))
-                funcao = a * (b ** x)
-                print('f(', x, ') = ', funcao)
+                multiplicar_matrizes(matriz, colunas, linhas)
             elif(escolha_usuario == 3):
-                grafico(a, b)
+                transpor_matriz(matriz, linhas, colunas)
 
 
 calculadora = True
 while calculadora:
-    escolha_usuario = int(input("Bem-vindo a nossa calculadora!\n"
+    escolha_usuario = int(input("\nBem-vindo a nossa calculadora!\n"
           "Escolha qual cálculo gostaria de fazer:\n"
           "1 - Funções de segundo grau;\n"
           "2 - Funções exponenciais;\n"
@@ -191,9 +232,9 @@ while calculadora:
             else:
                 print("Escolha uma opção válida!")
     elif escolha_usuario == 2:
-        """funcao_exponencial()"""
+        funcao_exponencial()
     elif escolha_usuario == 3:
-        """cria_matriz()"""
+        matriz()
     elif escolha_usuario == 4:
         break
     else:
