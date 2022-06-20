@@ -38,6 +38,125 @@ def calcular_vertice(a, b, delta):
         print("O 'a' não pode ser zero.")
     return f"O vértice é ({xv},{yv})"
 
+def funcao_exponencial(a, b):
+    n = 0
+    a = int(input('\nInforme o valor de a: '))
+    while n < 1:
+        b = input('\nInforme o valor de b: ')
+        if(b < 0):
+            print('\nO Valor de b tem que ser positivo.')
+            break
+        else:
+            calculos_exponencial(a, b)
+
+
+
+    return n
+
+def calculos_exponencial(a, b):
+    n = 0
+    while n < 1:
+        escolha_usuario = int(input('\n Digite de acordo com a ação que deseja: 1 - Verificar se a funcão é crescente ou decrescente',
+                                    '\n2 - Calcular função de x informado',
+                                    '\n 3 - Gerar gráfico',
+                                    '\n 4- Sair' ))
+        if(escolha_usuario < 0 or escolha_usuario > 3):
+            print('\nValor inválido')
+            break
+        elif escolha_usuario == 4:
+            n =+ 1
+        else:
+            n += 1
+            if(escolha_usuario == 1):
+                if(b > 1):
+                    print('\nA função é crescente!')
+                else:
+                    print('\nA função é descrescente!')
+            elif(escolha_usuario == 2):
+                x = int(input('\nInforme um valor de x para calcular a função dele.'))
+                funcao = a * (b ** x)
+                print('f(', x, ') = ', funcao)
+            elif(escolha_usuario == 3):
+                grafico(a, b)
+
+def funcaoExponencial (a, b, x):
+    return (a*b**x)   
+
+
+def grafico(a, b):
+    # Cria vetor de -7 a 7, aumentando de 0.1
+    vetorX = np.arange(-7,7, 0.1)
+    print (vetorX)
+    # Coeficientes
+    a = 2
+    #Encontra os valores de y para cada valor de x
+    vetorY = [] # vetor y vazio
+    for x in vetorX:
+        vetorY.append (funcaoExponencial(a, b, x)) # retorno da funcao vai para o vetory
+        print(vetorY)
+    #prepara para salvar o grafico
+    fig = plt.figure (figsize=(5, 5))
+    # Plota (desenha) o grafico
+    plt.plot(vetorX, vetorY, label = 'Funcao Exponencial', color = 'g')
+    plt.title ('f(x) = a^x')
+    plt.xlabel('eixo x')
+    # nome para o eixo x
+    plt.ylabel('eixo y')
+    # nome para o eixo y
+    plt.legend()
+    #apresenta legenda do grafico
+    plt.grid(True, which ='both') # apresenta grade do plano cartesiano
+    plt.axhline(y=0, color='k')
+    # destaca o eixo x em preto ('k')
+    plt.axvline(X = 0, color='k')
+    # destaca o eixo y em preto ('k*)
+    plt. show()
+  
+
+
+def matriz():
+    n = 0
+    while n < 1:
+        linhas = int(input('Digite o numero delinhas'))
+        colunas = int(input('Digite o numero de colunas'))
+
+        matriz = [0] * linhas
+        for coluna in range(colunas):
+            matriz[coluna] = [0] * colunas
+
+        for linha in range(linhas):
+            for coluna in range(colunas):
+                matriz[linha][coluna] = float(input('Digite um valor: '))
+
+        for linha in linhas:
+            for coluna in colunas:
+                if(linhas == 2):
+                    break
+
+        escolha_usuario = int(input('\n Digite de acordo com a ação que deseja: 1 - Verificar se a funcão é crescente ou decrescente',
+                                    '\n2 - Calcular função de x informado',
+                                    '\n 3 - Gerar gráfico',
+                                    '\n 4- Sair' ))
+        if(escolha_usuario < 0 or escolha_usuario > 3):
+            print('\nValor inválido')
+            break
+        elif escolha_usuario == 4:
+            n =+ 1
+        else:
+            n += 1
+            if(escolha_usuario == 1):
+                if(b > 1):
+                    print('\nA função é crescente!')
+                else:
+                    print('\nA função é descrescente!')
+            elif(escolha_usuario == 2):
+                x = int(input('\nInforme um valor de x para calcular a função dele.'))
+                funcao = a * (b ** x)
+                print('f(', x, ') = ', funcao)
+            elif(escolha_usuario == 3):
+                grafico(a, b)
+
+
 calculadora = True
 while calculadora:
     escolha_usuario = int(input("Bem-vindo a nossa calculadora!\n"
