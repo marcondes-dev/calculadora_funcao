@@ -218,7 +218,6 @@ while calculadora:
                 case default:
                     print("Escolha uma opção válida!")
 
-
     elif escolha_usuario == 2:
         funcao_exp = True
         while funcao_exp:
@@ -255,20 +254,20 @@ while calculadora:
                 case default:
                     print("Escolha uma opção válida!")
     elif escolha_usuario == 3:
-        matriz = True
-        while matriz:
-            opcao_calculo = int(input('\nVocê escolheu matrizes, digite de acordo com a ação que deseja:'
+        print("Você escolheu matrizes.\n")
+        linhas = int(input('Digite o numero de linhas: '))
+        colunas = int(input('Digite o numero de colunas: '))
+        matriz = gerar_matriz(linhas, colunas)
+        for i in range(linhas):
+            print(matriz[i])
+        calcula_matrizes = True
+        while calcula_matrizes:
+            opcao_calculo = int(input('\nDigite de acordo com a ação que deseja:'
                                         '\n 1 - Verificar se a matriz é quadrada'
                                         '\n 2 - Multiplicar com outra matriz'
                                         '\n 3 - Transpor matriz'
                                         '\n 4 - Sair'
                                         '\n'))
-
-            linhas = int(input('Digite o numero de linhas: '))
-            colunas = int(input('Digite o numero de colunas: '))
-            matriz = gerar_matriz(linhas, colunas)
-            for i in range(linhas):
-                print(matriz[i])
 
             match opcao_calculo:
                 case 1:
